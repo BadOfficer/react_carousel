@@ -56,6 +56,7 @@ export const CarouselSettings: FC<Props> = ({
 
       <label htmlFor="duration">Animation Duration:</label>
       <input
+        id="duration"
         type="number"
         name="duration"
         value={duration}
@@ -64,6 +65,7 @@ export const CarouselSettings: FC<Props> = ({
 
       <label htmlFor="infinite">Infinite:</label>
       <input
+        id="infinite"
         type="checkbox"
         name="infinite"
         checked={infinite}

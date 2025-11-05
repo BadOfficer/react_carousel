@@ -23,11 +23,14 @@ export const Carousel: React.FC<Props> = ({
   const [activeSlide, setActiveSlide] = useState(0);
   const carousel = useRef<HTMLUListElement>(null);
 
-  const slideCarousel = useCallback((newIndex: number) => {
-    if (carousel.current) {
-      carousel.current.style.transform = `translateX(-${newIndex * (itemWidth + horizontalGap)}px)`;
-    }
-  }, []);
+  const slideCarousel = useCallback(
+    (newIndex: number) => {
+      if (carousel.current) {
+        carousel.current.style.transform = `translateX(-${newIndex * (itemWidth + horizontalGap)}px)`;
+      }
+    },
+    [itemWidth],
+  );
 
   const handleNextSlides = () => {
     setActiveSlide(curIndex => {
@@ -114,14 +117,10 @@ export const Carousel: React.FC<Props> = ({
           }}
         >
           {images.map((img, i) => (
-            <li key={img} className="Carousel__item">
+            <li key={`${img}_${i}`} className="Carousel__item">
               <img
                 src={img}
                 alt={`${i}`}
-                // style={{
-                //   width: `${itemWidth}px`,
-                //   height: `${itemWidth}px`,
-                // }}
                 width={itemWidth}
                 height={itemWidth}
               />
@@ -134,7 +133,7 @@ export const Carousel: React.FC<Props> = ({
         type="button"
         className="Carousel__arrow Carousel__arrow--prev"
         onClick={handlePrevSlides}
-        disabled={!infinite && images.length - activeSlide <= 0}
+        disabled={!infinite && images.length - activeSlide === 0}
       ></button>
       <button
         data-cy="next"
