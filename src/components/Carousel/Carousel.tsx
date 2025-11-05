@@ -133,7 +133,7 @@ export const Carousel: React.FC<Props> = ({
         type="button"
         className="Carousel__arrow Carousel__arrow--prev"
         onClick={handlePrevSlides}
-        disabled={!infinite && images.length - activeSlide === 0}
+        disabled={!infinite && activeSlide === 0}
       ></button>
       <button
         data-cy="next"
